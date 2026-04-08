@@ -1,8 +1,6 @@
 import java.util.List;
-import java.time.LocalDate;
-import java.util.ArrayList;
 
-List<Livro> acervo = new ArrayList<>();
+LivroService service = new LivroService();
 
 void main() {
     String menu = """
@@ -43,39 +41,32 @@ void cadastrar() throws Exception {
 
     Livro novoLivro = new Livro(titulo, autor, anoPublicacao, numeroPaginas);
 
-    if (novoLivro.getAnoPublicacao() < 1900 || novoLivro.getAnoPublicacao() > LocalDate.now().getYear())
-        throw new Exception("Ano de publicação inválido");
+    service.cadastrar(novoLivro);
 
-    for (Livro livro : acervo) {
-        if (livro.getTitulo().equalsIgnoreCase(novoLivro.getTitulo()) && livro.getAutor().equalsIgnoreCase(novoLivro.getAutor()) && livro.getAnoPublicacao() == novoLivro.getAnoPublicacao())
-            throw new Exception("Já existe livro cadastrado com esse Título, Autor e ano de publicação.");
-    }
-
-    acervo.add(novoLivro);
     IO.println("Livro cadastrado com sucesso.");
 }
 
 void listar() {
-    if (acervo.isEmpty()) {
-        IO.println("Nenhum livro cadastrado.");
-        return;
-    }
-    int i = 1;
-    for (Livro livro : acervo) {
-        IO.println(i++ + " - " + livro);
-    }
+    List<Livro> livros = service.listar();
+
+    imprimirLista(livros);
 }
 
 void pesquisar() {
     String pesquisa = Input.scanString("Digite o título: ");
-    int i = 1;
-    boolean encontrou = false;
-    for (Livro livro : acervo) {
-        if (livro.getTitulo().toLowerCase().contains(pesquisa.toLowerCase())){
-            IO.println(i++ + " - " + livro);
-            encontrou = true;
-        }
+
+    List<Livro> livros = service.pesquisar(pesquisa);
+
+    imprimirLista(livros);
+}
+
+void imprimirLista(List<Livro> livros) {
+    if (livros.isEmpty()) {
+        IO.println("Nenhum livro cadastrado.");
+        return;
     }
-    if (!encontrou)
-        IO.println("Não encontrado.");
+    int i = 1;
+    for (Livro livro : livros) {
+        IO.println(i++ + " - " + livro);
+    }
 }
