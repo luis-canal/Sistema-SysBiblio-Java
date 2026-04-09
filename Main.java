@@ -4,7 +4,7 @@ LivroService service = new LivroService();
 
 void main() {
     String menu = """
-            ===== Sistema da bibliotéca =====
+            ===== Sistema da Bibliotca =====
             1- Cadastrar livro
             2- Listar livro
             3- Pesquisar livro
