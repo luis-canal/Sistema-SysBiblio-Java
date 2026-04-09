@@ -8,6 +8,7 @@ void main() {
             1- Cadastrar livro
             2- Listar livro
             3- Pesquisar livro
+            4- Remover um livro do acervo
             0- Sair
             =================================
             """;
@@ -20,6 +21,7 @@ void main() {
                 case 1 -> cadastrar();
                 case 2 -> listar();
                 case 3 -> pesquisar();
+                case 4 -> remover();
                 case 0 -> {
                     IO.println("Saindo...");
                     break;
@@ -69,4 +71,18 @@ void imprimirLista(List<Livro> livros) {
     for (Livro livro : livros) {
         IO.println(i++ + " - " + livro);
     }
+}
+
+void remover() throws Exception {
+    List<Livro> livros = service.listar();
+    if (livros.isEmpty()) {
+        IO.println("Nenhum livro cadastrado.");
+        return;
+    }
+    imprimirLista(livros);
+
+    int removido = Input.scanInt("Digite o índice do livro a ser removido: ");
+
+    service.remover(removido - 1);
+    IO.println("Livro removido com sucesso!");
 }

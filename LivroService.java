@@ -48,4 +48,10 @@ public class LivroService {
 
         return encontrados;
     }
+
+    public void remover(int removido) throws Exception {
+        if (removido < 0 || removido >= acervo.size())
+            throw new Exception("Índice inválido");
+        acervo.remove(removido);
+    }
 }
