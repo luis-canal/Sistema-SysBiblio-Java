@@ -87,3 +87,42 @@ void remover() throws Exception {
     service.remover(removido - 1);
     IO.println("Livro removido com sucesso!");
 }
+
+void editarLivro() {
+    List<Livro> livros = service.listar();
+    if (livros.isEmpty()) {
+        IO.println("Nenhum livro cadastrado.");
+        return;
+    }
+    imprimirLista(livros);
+    
+    int editado = Input.scanInt("Digite o índice do livro a ser editado: ");
+    
+    Livro livroAtual = livros.get(editado - 1); 
+
+    IO.println("Deixe vazio para manter o valor atual.");
+
+    IO.println("Título atual: " + livroAtual.getTitulo());
+    String novoTitulo = Input.scanString("Novo título: ");
+    if (novoTitulo.isEmpty())
+        novoTitulo = livroAtual.getTitulo();
+
+    IO.println("Autor atual: " + livroAtual.getAutor());
+    String novoAutor = Input.scanString("Novo autor: ");
+    if (novoAutor.isEmpty())
+        novoAutor = livroAtual.getAutor();
+
+    IO.println("Ano de publicação atual: " + livroAtual.getAnoPublicacao());
+    String stringNovoAnoPublicacao = Input.scanString("Novo ano de publicação: ");
+    int novoAnoPublicacao = stringNovoAnoPublicacao.isEmpty() ? livroAtual.getAnoPublicacao() : Integer.parseInt(stringNovoAnoPublicacao);
+
+    IO.println("Número de páginas atual: " + livroAtual.getNumeroPaginas());
+    String stringNovoNumeroPaginas = Input.scanString("Novo número de páginas: ");
+    int novoNumeroPaginas = stringNovoNumeroPaginas.isEmpty() ? livroAtual.getNumeroPaginas() : Integer.parseInt(stringNovoNumeroPaginas);
+
+    Livro livroEditado = new Livro(novoTitulo, novoAutor, novoAnoPublicacao, novoNumeroPaginas);
+
+    service.editar(editado -1, livroEditado);
+
+    IO.println("Livro editado com sucesso!");
+}
