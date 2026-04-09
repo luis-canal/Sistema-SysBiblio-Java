@@ -31,7 +31,8 @@ void main() {
         } catch (Exception e) {
             IO.println("Erro: " + e.getMessage());
         }
-        IO.readln("Pressione Enter para continuar...");
+        if (opcao != 0)
+            IO.readln("Pressione Enter para continuar...");
     } while (opcao != 0);
 }
 
