@@ -88,7 +88,7 @@ void remover() throws Exception {
     IO.println("Livro removido com sucesso!");
 }
 
-void editarLivro() {
+void editarLivro() throws Exception {
     List<Livro> livros = service.listar();
     if (livros.isEmpty()) {
         IO.println("Nenhum livro cadastrado.");

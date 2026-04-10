@@ -26,8 +26,8 @@ public class LivroService {
                     && livro.getAnoPublicacao() == novoLivro.getAnoPublicacao())
                 throw new Exception("Já existe livro cadastrado com esse Título, Autor e ano de publicação.");
         }
-        
-        //nesta parte estaria chamando a camada Repository
+
+        // nesta parte estaria chamando a camada Repository
 
         acervo.add(novoLivro);
     }
@@ -53,5 +53,22 @@ public class LivroService {
         if (removido < 0 || removido >= acervo.size())
             throw new Exception("Índice inválido");
         acervo.remove(removido);
+    }
+
+    public void editar(int indice, Livro livroEditado) throws Exception {
+        if (indice < 0 || indice >= acervo.size())
+            throw new Exception("Índice inválido.");
+
+        for (int i = 0; i < acervo.size(); i++) {
+            Livro livro = acervo.get(i);
+
+            if (i != indice
+                    && livro.getTitulo().equalsIgnoreCase(livroEditado.getTitulo())
+                    && livro.getAutor().equalsIgnoreCase(livroEditado.getAutor())
+                    && livro.getAnoPublicacao() == livroEditado.getAnoPublicacao()) {
+                        throw new Exception("Já existe um livro com esses dados.");
+                    }
+        }
+        acervo.set(indice, livroEditado);
     }
 }
