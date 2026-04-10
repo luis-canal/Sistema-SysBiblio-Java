@@ -9,6 +9,7 @@ void main() {
             2- Listar livro
             3- Pesquisar livro
             4- Remover um livro do acervo
+            5- Editar um livro do acervo
             0- Sair
             =================================
             """;
