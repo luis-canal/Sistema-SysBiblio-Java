@@ -66,9 +66,37 @@ public class LivroService {
                     && livro.getTitulo().equalsIgnoreCase(livroEditado.getTitulo())
                     && livro.getAutor().equalsIgnoreCase(livroEditado.getAutor())
                     && livro.getAnoPublicacao() == livroEditado.getAnoPublicacao()) {
-                        throw new Exception("Já existe um livro com esses dados.");
-                    }
+                throw new Exception("Já existe um livro com esses dados.");
+            }
         }
         acervo.set(indice, livroEditado);
+    }
+
+    private void validarLivro(Livro livro, int indiceIgnorado) throws Exception {
+        if (livro == null)
+            throw new Exception("Objeto nulo.");
+
+        if (livro.getTitulo() == null || livro.getTitulo().trim().isEmpty())
+            throw new Exception("Título inválido.");
+        livro.setTitulo(livro.getTitulo().trim().toUpperCase());
+
+        if (livro.getAutor() == null || livro.getAutor().trim().isEmpty())
+            throw new Exception("Autor inválido.");
+        livro.setAutor(livro.getAutor().trim().toUpperCase());
+
+        if (livro.getAnoPublicacao() < 1900 || livro.getAnoPublicacao() > LocalDate.now().getYear())
+            throw new Exception("Ano de publicação inválido.");
+
+        for (int i = 0; i < acervo.size(); i++) {
+            Livro l = acervo.get(i);
+
+            if (i != indiceIgnorado &&
+                    l.getTitulo().equalsIgnoreCase(livro.getTitulo()) &&
+                    l.getAutor().equalsIgnoreCase(livro.getAutor()) &&
+                    l.getAnoPublicacao() == livro.getAnoPublicacao()) {
+                        throw new Exception("Já existe um livro com esses dados.");
+            }
+        }
+
     }
 }
