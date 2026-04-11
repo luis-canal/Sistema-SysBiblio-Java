@@ -98,27 +98,29 @@ void editarLivro() throws Exception {
     imprimirLista(livros);
     
     int editado = Input.scanInt("Digite o índice do livro a ser editado: ");
+
+    
     
     Livro livroAtual = livros.get(editado - 1); 
 
     IO.println("Deixe vazio para manter o valor atual.");
 
     IO.println("Título atual: " + livroAtual.getTitulo());
-    String novoTitulo = Input.scanString("Novo título: ");
+    String novoTitulo = IO.readln("Novo título: ");
     if (novoTitulo.isEmpty())
         novoTitulo = livroAtual.getTitulo();
 
     IO.println("Autor atual: " + livroAtual.getAutor());
-    String novoAutor = Input.scanString("Novo autor: ");
+    String novoAutor = IO.readln("Novo autor: ");
     if (novoAutor.isEmpty())
         novoAutor = livroAtual.getAutor();
 
     IO.println("Ano de publicação atual: " + livroAtual.getAnoPublicacao());
-    String stringNovoAnoPublicacao = Input.scanString("Novo ano de publicação: ");
+    String stringNovoAnoPublicacao = IO.readln("Novo ano de publicação: ");
     int novoAnoPublicacao = stringNovoAnoPublicacao.isEmpty() ? livroAtual.getAnoPublicacao() : Integer.parseInt(stringNovoAnoPublicacao);
 
     IO.println("Número de páginas atual: " + livroAtual.getNumeroPaginas());
-    String stringNovoNumeroPaginas = Input.scanString("Novo número de páginas: ");
+    String stringNovoNumeroPaginas = IO.readln("Novo número de páginas: ");
     int novoNumeroPaginas = stringNovoNumeroPaginas.isEmpty() ? livroAtual.getNumeroPaginas() : Integer.parseInt(stringNovoNumeroPaginas);
 
     Livro livroEditado = new Livro(novoTitulo, novoAutor, novoAnoPublicacao, novoNumeroPaginas);
