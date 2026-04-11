@@ -40,16 +40,7 @@ public class LivroService {
         if (indice < 0 || indice >= acervo.size())
             throw new Exception("Índice inválido.");
 
-        for (int i = 0; i < acervo.size(); i++) {
-            Livro livro = acervo.get(i);
-
-            if (i != indice
-                    && livro.getTitulo().equalsIgnoreCase(livroEditado.getTitulo())
-                    && livro.getAutor().equalsIgnoreCase(livroEditado.getAutor())
-                    && livro.getAnoPublicacao() == livroEditado.getAnoPublicacao()) {
-                throw new Exception("Já existe um livro com esses dados.");
-            }
-        }
+        validarLivro(livroEditado, indice);
         acervo.set(indice, livroEditado);
     }
 
