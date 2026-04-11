@@ -99,7 +99,10 @@ void editarLivro() throws Exception {
     
     int editado = Input.scanInt("Digite o índice do livro a ser editado: ");
 
-    
+    if (editado < 1 || editado > livros.size()) {
+        IO.println("Índice inválido.");
+        return;
+    }
     
     Livro livroAtual = livros.get(editado - 1); 
 
