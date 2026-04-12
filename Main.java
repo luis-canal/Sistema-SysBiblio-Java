@@ -65,7 +65,7 @@ void pesquisar() {
             ===================
             """;
 
-    int opcaoPesquisa = Input.scanInt("Escolha uma opção: ");
+    int opcaoPesquisa = Input.scanInt(menu + "Escolha uma opção: ");
 
     List<Livro> resultado;
     switch (opcaoPesquisa) {

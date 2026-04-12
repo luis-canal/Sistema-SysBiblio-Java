@@ -31,11 +31,28 @@ public class LivroService {
     }
 
     public List<Livro> pesquisarAutor(String autor) {
+        List<Livro> encontrados = new ArrayList<>();
+        autor = autor.toUpperCase();
 
+        for (Livro livro : acervo) {
+            if (livro.getTitulo().contains(autor))
+                encontrados.add(livro);
+
+        }
+
+        return encontrados;
     }
 
     public List<Livro> pesquisarAno(int ano) {
-        
+        List<Livro> encontrados = new ArrayList<>();
+
+        for (Livro livro : acervo) {
+            if (livro.getAnoPublicacao() == ano)
+                encontrados.add(livro);
+
+        }
+
+        return encontrados;
     }
 
     public void remover(int removido) throws Exception {
