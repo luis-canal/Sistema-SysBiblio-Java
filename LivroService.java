@@ -35,7 +35,7 @@ public class LivroService {
         autor = autor.toUpperCase();
 
         for (Livro livro : acervo) {
-            if (livro.getTitulo().contains(autor))
+            if (livro.getAutor().contains(autor))
                 encontrados.add(livro);
 
         }
