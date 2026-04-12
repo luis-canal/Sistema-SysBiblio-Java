@@ -4,7 +4,7 @@ LivroService service = new LivroService();
 
 void main() {
     String menu = """
-            ===== Sistema da Bibliotca =====
+            ===== Sistema da Biblioteca =====
             1- Cadastrar livro
             2- Listar livro
             3- Pesquisar livro
@@ -23,6 +23,7 @@ void main() {
                 case 2 -> listar();
                 case 3 -> pesquisar();
                 case 4 -> remover();
+                case 5 -> editarLivro();
                 case 0 -> {
                     IO.println("Saindo...");
                     break;
