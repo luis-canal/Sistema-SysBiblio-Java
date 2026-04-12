@@ -57,11 +57,36 @@ void listar() {
 }
 
 void pesquisar() {
-    String pesquisa = Input.scanString("Digite o título: ");
+    String menu = """
+            ===== Pesquisa =====
+            1- Por título
+            2- Por autor
+            3- Por ano
+            ===================
+            """;
 
-    List<Livro> livros = service.pesquisar(pesquisa);
+    int opcaoPesquisa = Input.scanInt("Escolha uma opção: ");
 
-    imprimirLista(livros);
+    List<Livro> resultado;
+    switch (opcaoPesquisa) {
+        case 1 -> {
+            String titulo = Input.scanString("Digite o título: ");
+            resultado = service.pesquisarTitulo(titulo);
+        }
+        case 2 -> {
+            String autor = Input.scanString("Digite o autor: ");
+            resultado = service.pesquisarAutor(autor);
+        }
+        case 3 -> {
+            int ano = Input.scanInt("Digite o ano: ");
+            resultado = service.pesquisarAno(ano);
+        }
+        default -> {
+            IO.println("Opção inválida.");
+            return;
+        }
+    }
+    imprimirLista(resultado);
 }
 
 void imprimirLista(List<Livro> livros) {

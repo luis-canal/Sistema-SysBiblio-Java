@@ -17,7 +17,7 @@ public class LivroService {
         return acervo;
     }
 
-    public List<Livro> pesquisar(String titulo) {
+    public List<Livro> pesquisarTitulo(String titulo) {
         List<Livro> encontrados = new ArrayList<>();
         titulo = titulo.toUpperCase();
 
@@ -28,6 +28,14 @@ public class LivroService {
         }
 
         return encontrados;
+    }
+
+    public List<Livro> pesquisarAutor(String autor) {
+
+    }
+
+    public List<Livro> pesquisarAno(int ano) {
+        
     }
 
     public void remover(int removido) throws Exception {
