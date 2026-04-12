@@ -10,6 +10,7 @@ void main() {
             3- Pesquisar livro
             4- Remover um livro do acervo
             5- Editar um livro do acervo
+            6- Estatísticas do acervo
             0- Sair
             =================================
             """;
@@ -24,6 +25,7 @@ void main() {
                 case 3 -> pesquisar();
                 case 4 -> remover();
                 case 5 -> editarLivro();
+                case 6 -> mostrarEstatisticas();
                 case 0 -> {
                     IO.println("Saindo...");
                     break;
@@ -157,4 +159,23 @@ void editarLivro() throws Exception {
     service.editar(editado -1, livroEditado);
 
     IO.println("Livro editado com sucesso!");
+}
+
+void mostrarEstatisticas() {
+    if (service.totalLivros() == 0) {
+        IO.println("Nenhum livro cadastrado.");
+        return;
+    }
+
+    int total = service.totalLivros();
+    double media = service.mediaPaginas();
+    Livro antigo = service.livroMaisAntigo();
+    Livro recente = service.livroMaisRecente();
+
+    IO.println("===== Estatísticas do Acervo =====");
+    IO.println("Total de livros: " + total);
+    IO.println("Média de páginas: " + String.format("%.2f", media));
+    IO.println("Livro mais antigo: " + antigo);
+    IO.println("Livro mais recente: " + recente);
+    IO.println("==================================");
 }

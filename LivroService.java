@@ -96,4 +96,45 @@ public class LivroService {
         }
 
     }
+
+    public int totalLivros() {
+        return acervo.size();
+    }
+    
+    public double mediaPaginas() {
+        if (acervo.isEmpty()) return 0;
+
+        int soma = 0;
+        for (Livro livro : acervo) {
+            soma += livro.getNumeroPaginas();
+        }
+        
+        return (double) soma / acervo.size();
+    }
+
+    public Livro livroMaisAntigo() {
+        if (acervo.isEmpty()) return null;
+
+        Livro maisAntigo = acervo.get(0);
+        
+        for (Livro livro : acervo) {
+            if (livro.getAnoPublicacao() < maisAntigo.getAnoPublicacao()) {
+                maisAntigo = livro;
+            }
+        }
+        return maisAntigo;
+    }
+
+        public Livro livroMaisRecente() {
+        if (acervo.isEmpty()) return null;
+
+        Livro maisRecente = acervo.get(0);
+        
+        for (Livro livro : acervo) {
+            if (livro.getAnoPublicacao() > maisRecente.getAnoPublicacao()) {
+                maisRecente = livro;
+            }
+        }
+        return maisRecente;
+    }
 }
