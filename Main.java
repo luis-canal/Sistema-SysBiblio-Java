@@ -55,10 +55,11 @@ void cadastrar() throws Exception {
         String dimensoes = Input.scanString("Digite as dimensões: ");
         novoLivro = new LivroFisico(titulo, autor, anoPublicacao, numeroPaginas, numeroExemplares, dimensoes);
     } else if (tipoLivro == 2) {
-        novoLivro = null;
+        double tamanhoArquivo = Input.scanDouble("Digite o tamanho do arquivo: ");
+        String formatoArquivo = Input.scanString("Digite o formato do arquivo: ");
+        novoLivro = new LivroDigital(titulo, autor, anoPublicacao, numeroPaginas, tamanhoArquivo, formatoArquivo);
     } else
         throw new Exception("Tipo de livro inválido.");
-
 
     service.cadastrar(novoLivro);
 
