@@ -46,12 +46,25 @@ void cadastrar() throws Exception {
     int anoPublicacao = Input.scanInt("Digite o ano de publicação do livro: ");
     int numeroPaginas = Input.scanInt("Digite o número de páginas do livro: ");
 
-    Livro novoLivro = new Livro(titulo, autor, anoPublicacao, numeroPaginas);
+    int tipoLivro = Input.scanInt("Qual o tipo do livro - (1) Livro físico; (2) Livro digital? ");
+
+    Livro novoLivro;
+
+    if (tipoLivro == 1) {
+        int numeroExemplares = Input.scanInt("Digite o número de exemplares: ");
+        String dimensoes = Input.scanString("Digite as dimensões: ");
+        novoLivro = new LivroFisico(titulo, autor, anoPublicacao, numeroPaginas, numeroExemplares, dimensoes);
+    } else if (tipoLivro == 2) {
+        novoLivro = null;
+    } else
+        throw new Exception("Tipo de livro inválido.");
+
 
     service.cadastrar(novoLivro);
 
     IO.println("Livro cadastrado com sucesso.");
 }
+
 
 void listar() {
     List<Livro> livros = service.listar();
