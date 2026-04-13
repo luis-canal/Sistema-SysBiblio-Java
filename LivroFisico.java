@@ -3,10 +3,7 @@ public class LivroFisico extends Livro {
     private String dimensoes;
 
     public LivroFisico(String titulo, String autor, int anoPublicacao, int numeroPaginas, int numeroExemplares, String dimensoes) {
-        this.setTitulo(titulo);
-        this.setAutor(autor);
-        this.setAnoPublicacao(anoPublicacao);
-        this.setNumeroPaginas(numeroPaginas);
+        super(titulo, autor, anoPublicacao, numeroPaginas);
         this.numeroExemplares = numeroExemplares;
         this.dimensoes = dimensoes;
     }
