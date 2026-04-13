@@ -113,7 +113,7 @@ void imprimirLista(List<Livro> livros) {
     }
     int i = 1;
     for (Livro livro : livros) {
-        IO.println(i++ + " - " + livro);
+        IO.println(i++ + " - " + livro.toString());
     }
 }
 
